@@ -1,0 +1,37 @@
+
+ How many ways we can create objects
+ ==================================
+ 5 Ways we can create objects
+ =================================
+ 1) By using ==> new keyword
+ 
+ 2)By using ==> Class.forName()  ==>	getInstance() method  
+ 
+ 3) By using ==> clone() method 
+ 
+ 4)By using ==> Constructor class having getInstance() method  
+ 
+ 5) By using ==> deserialaisation
+ 
+
+
+
+
+
+==========================================================
+                                        map()
+==========================================================
+The function passed to map() operation returns a single value for a single input.
+One-to-one mapping occurs in map().
+Only perform the mapping.
+Produce a stream of value.
+map() is used only for transformation.
+
+==========================================================
+                                           flatMap()
+==========================================================
+The function you pass to flatmap() operation returns an arbitrary number of values as the output.
+One-to-many mapping occurs in flatMap().
+Perform mapping as well as flattening.
+Produce a stream of stream value.
+flatMap() is used both for transformation and mapping.

@@ -1,0 +1,54 @@
+﻿REGISTRATION FORM
+==================
+
+Sign up
+--------------------------------------------
+Full Name
+
+Country Code India (+91),	Moblie Number
+
+Email
+
+Password
+
+
+
+-------------------------------------------
+Submit
+If you already have an account Login Here
+Sign in with
+G+
+X
+
+@Controller
+public class RegistrationController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
+        return "registration";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "registration";
+        }
+
+        Optional<User> existingUser = userService.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            result.rejectValue("email", null, "Email already registered");
+            return "registration";
+        }
+
+        userService.saveUser(user);
+        return "redirect:/registration-success";
+    }
+
+    @GetMapping("/registration-success")
+    public String registrationSuccess() {
+        return "registration-success";
+    }
+}

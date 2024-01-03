@@ -1,0 +1,551 @@
+
+
+
+=================================
+REVERSINF OF STIRNGS IN 4 WAYS
+===============================
+=======================================================================
+//method-1 by using toCharArray()
+h
+s
+e
+l
+a
+m
+u
+r
+i
+h
+t
+//method-2 by using charAt()
+h
+s
+e
+l
+a
+m
+u
+r
+i
+h
+t
+//method-3 by using stringBuffer class and reverse method
+hselamuriht
+//method-4 by using stringBuilder class and reverse method
+hselamuriht
+=============================================================
+
+
+
+public class No01ReverseStringByUsingtoCharArrayM {
+
+	public static void main(String[] args) {
+		
+		String name="thirumalesh";
+		int len=name.length();
+		
+		
+		//method-1 by using toCharArray()
+		//=================================
+		System.out.println("//method-1 by using toCharArray()");
+		char[] x=name.toCharArray();
+		for(int i=len-1;i>=0;i--)
+		{
+			System.out.println(x[i]);
+		}
+		
+
+
+
+		//method-2 by using charAt()
+		//============================
+		System.out.println("//method-2 by using charAt()");
+		for(int i=len-1;i>=0;i--)
+		{
+			System.out.println(name.charAt(i));
+		}
+		
+
+
+
+		//method-3 by using stringBuffer class and reverse method
+		//===============================================================================
+		System.out.println("//method-3 by using stringBuffer class and reverse method");
+		StringBuffer sbfr=new StringBuffer(name);
+		System.out.println(sbfr.reverse());
+		
+
+
+
+		//method-4 by using stringBuffer class and reverse method
+		//=========================================================
+		StringBuilder sbr=new StringBuilder(name);
+		
+		System.out.println("//method-4 by using stringBuilder class and reverse method");
+		System.out.println(sbr.reverse());
+		
+		
+	}
+}
+
+
+=========================================
+REMOVE DUPLICATES
+========================================
+package com.thiru.string;
+
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.Set;
+
+public class No02RemoveDuplicateElementsInAstring {
+	
+	
+	public static void main(String[] args) {
+		String str="programming";
+		
+		//approach-1
+		//==============================================================================================
+         StringBuilder sbr1=new StringBuilder();
+        str.chars().distinct().forEach(s->sbr1.append((char)s));
+		
+		
+		
+		//approach-2
+		//=================================================================================================
+		System.out.println("//approach-2");
+		StringBuilder sb2=new StringBuilder();
+		for(int i=0;i<str.length();i++)
+		{
+			char ch=str.charAt(i);   //p,r,o,g,r,a,m,m,i,n,g
+			int idx=str.indexOf(ch, i+1); //p[0]==>r,o,g,r,a,m,m,i,n,g[it will check all char] not presnt return -1
+			if(idx == -1)
+			{
+				sb2.append(ch);
+			}
+		}
+		System.out.println(sb2);
+		
+		
+		
+
+		
+		
+		
+		
+		int len=str.length();
+		char[] x=str.toCharArray();
+		for(int i=0;i<len;i++)
+		{
+			boolean unique=true;
+			
+			for(int j=i+1;j<len;j++)
+			{
+				
+				if(x[i]==x[j])
+				{
+					unique=false;
+				}
+				
+			}
+			
+			if(unique)
+			{
+				System.out.print(x[i]);
+			}
+		}
+		
+
+		
+		
+		//approach-3
+//		System.out.println("/approach-3");
+//		char[] arr=str.toCharArray();
+//		StringBuilder sb3=new StringBuilder();
+//		for(int i=0;i<str.length();i++)
+//		{
+//			boolean repeated=false;
+//			 for(int j=i+1;j<str.length();j++)
+//			 {
+//				 if(arr[i]==arr[j])
+//				 {
+//					 repeated=true;
+//					 break;
+//				 }
+//				 
+//			 }
+//			 if(!repeated)
+//			 {
+//				 sb3.append(arr[i]);
+//			 }
+//		}
+//		System.out.println(sb3);
+		
+		//approach-4
+//		System.out.println("//approach-4");
+//		StringBuilder sb4=new StringBuilder();
+//		Set<Character> set=new LinkedHashSet<>();
+//		for(int i=0;i<str.length();i++)
+//		{
+//			set.add(str.charAt(i));
+//		}
+//		for(Character c:set)
+//		{
+//			sb4.append(c);
+//		}
+//		System.out.println(sb4);
+		
+	}
+}
+
+==============================
+REVERSE EACH WORD
+==============================
+package com.thiru.string;
+
+//i/p  java code
+//o/p  edoc avaj
+public class No03ReverseEachWordString {
+	
+	public static void main(String[] args) 
+	{
+
+		
+		
+//		String s="java code";
+//		String[] words=s.split(" ");
+//		String output="";
+//		
+//		for(String word:words)
+//		{
+//			String revWord="";
+//			
+//			for(int i=word.length()-1;i>=0;i--)
+//			{
+//				revWord=revWord+word.charAt(i);
+//			}
+//			
+//			output=output+revWord+" ";
+//		}
+//		System.out.println(output);
+//		
+		
+		
+
+		String name="golla thiru how are you";
+		String[] words=name.split(" ");
+		 
+		String outputWord="";
+		
+		for(String word:words)
+		{
+			String revWord="";
+			
+			for (int i =word.length()-1 ; i >=0 ; i--)
+			{
+				revWord=revWord+word.charAt(i);
+			}
+			
+			outputWord=outputWord+revWord+" ";
+		}
+		System.out.println(outputWord);
+		
+		
+		
+	}
+	
+
+}
+
+
+=======================================
+COUNT EACH CHARACTER
+======================================
+
+
+package com.thiru.string;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class No04CountNoOfCharInAString {
+
+	public static void main(String[] args) {
+		
+		
+//		String name="thirumalesh";
+//		char[] x=name.toCharArray();
+//		int len=name.length();
+//		Map<Character,Integer> map=new HashMap<>();
+//		int i=0;
+//		
+//		while(i != len)
+//		{
+//			if(map.containsKey(x[i])==false)
+//			{
+//				map.put(x[i], 1);
+//			}
+//			else
+//			{
+//				int oldVal=map.get(x[i]);
+//				int newVal=oldVal+1;
+//				
+//				map.put(x[i], newVal);
+//			}
+//			
+//			
+//			i++;
+//		}
+//		
+//		Set<Map.Entry<Character,Integer>> set=map.entrySet();
+//		for(Map.Entry<Character,Integer> st:set)
+//		{
+//			System.out.println(st);
+//		}
+		
+		
+		
+		
+=============================================================
+FIRST NON-REPEATED CHARACTER
+====================================================================
+		
+		
+		String name="thiruamlesh";
+		char[] x=name.toCharArray();
+		int len=name.length();
+		int i=0;
+		Map<Character,Integer> map=new HashMap<>();
+		while(i != len)
+		{
+			if(map.containsKey(x[i])==false)
+			{
+				map.put(x[i], 1);
+			}
+			else
+			{
+				int oldVal=map.get(x[i]);
+				int newVal=oldVal+1;
+				map.put(x[i], newVal);
+			}
+			i++;
+		}
+		
+		Set<Map.Entry<Character, Integer>> set=map.entrySet();
+		for(Map.Entry<Character, Integer> st:set)
+		{
+			System.out.println(st.getKey()+">>>>>"+st.getValue());
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.thiru.string;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class No05FirstNonRepeatedCharacter {
+
+	public static void main(String[] args) {
+		// 1 way without using collections
+
+//		String name="Madam";
+//		name=name.toLowerCase();
+//		char[] x=name.toCharArray();
+//		int len=name.length();
+//		for(int i=0;i<len;i++)
+//		{
+//			
+//			boolean unique=true;
+//			
+//			for(int j=0;j<len;j++)
+//			{
+//				
+//				if((i != j)  && x[i]==x[j])
+//				{
+//					unique=false;
+//				}
+//			}
+//			
+//			if(unique)
+//			{
+//				System.out.println(x[i]);
+//			}
+//		}
+				
+		
+		//2nd way with usign collections
+		
+	   String  name="Madam";
+	   char[] x=name.toCharArray();
+	   int len=name.length();
+	   Map<Character,Integer> map=new HashMap<>();
+	   int i=0;
+	   while(i != len)
+	   {
+		   if(map.containsKey(x[i])==false)
+		   {
+			   map.put(x[i], 1);
+		   }
+		   else
+		   {
+			   int oldVal=map.get(x[i]);
+			   int newVal=oldVal+1;
+			   map.put(x[i], newVal);
+		   }
+		   i++;
+	   }
+	    
+	 Set<Map.Entry<Character,Integer>> set=map.entrySet();
+	 for(Map.Entry<Character,Integer> st:set)
+	 {
+		 if(st.getValue()==1)
+		 {
+			 System.out.println(st.getKey()+">>>>> "+st.getValue());
+			 break;
+		 }
+	 }
+		
+	}
+
+}
+
+
+======================================================
+NUMBER OF OCCURENCE OF CHARACTERS
+=======================================================
+package com.thiru.string;
+
+import java.util.Arrays;
+/*
+ * 
+ * [o, p, e, n, , e, x, ]
+ * O P E N 1 E X 2
+ */
+
+public class No06CharacterWithOccurence {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String name="opentext";
+		char replaceChar='t';
+		int len=name.length();
+		
+		
+		if(name.indexOf(replaceChar)==-1)
+		{
+			System.out.println("the given character is not available");
+		   System.exit(0);
+		}
+		
+		char[] x=name.toCharArray();
+		char count=1;
+		for(int i=0;i<len;i++)
+		{
+			if(x[i]==replaceChar)
+			{
+			
+				x[i]=String.valueOf(count).charAt(0);
+				count++;
+			}
+		}
+		System.out.println(Arrays.toString(x));
+	
+
+	}
+
+}
+
+
+==================================
+UNIQUE CHARACTERS
+==================================
+package com.thiru.string;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class No07UniqueCharacters {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+//		String name="Madam";
+//		name=name.toLowerCase();
+//		char[] x=name.toCharArray();
+//		int len=name.length();
+//		for(int i=0;i<len;i++)
+//		{
+//			boolean unique=true;
+//			
+//			for(int j=0;j<len;j++)
+//			{
+//				if( i != j &&  x[i] == x[j])
+//				{
+//					unique=false;
+//				}
+//			}
+//			
+//			if(unique)
+//			{
+//				System.out.println(x[i]);
+//			}
+//		}
+		
+		String name="madam";
+		char[] x=name.toCharArray();
+		int len=name.length();
+		int i=0;
+		Map<Character,Integer> map=new HashMap<>();
+		while(i != len)
+		{
+			if(map.containsKey(x[i])==false)
+			{
+				map.put(x[i], 1);
+			}
+			else
+			{
+				int oldVal=map.get(x[i]);
+				int newVal=oldVal+1;
+				map.put(x[i], newVal);
+			}
+			i++;
+		}
+		Set<Map.Entry<Character, Integer>> set=map.entrySet();
+		for(Map.Entry<Character, Integer> st:set)
+		{
+			if(st.getValue()>0)
+			{
+				System.out.println(st.getKey()+"  >>>>>  "+st.getValue());
+			}
+		}
+		
+		
+		
+		
+
+	}
+
+}

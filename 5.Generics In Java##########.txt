@@ -1,0 +1,436 @@
+######################################################################################
+Generic''''s In Java
+######################################################################################
+	==>	1.5v
+
+	==>	Classes,Var,Method independent data type[CVM] INDE
+
+	==>	to achieve type safety
+
+-> Generics introduced in java 1.5 version
+
+-> Using Generics, we can write our classes / variable / methods which are indendent of data type
+
+-> Generics are used to achieve type safety
+
+public void m1 ( Integer i ){
+
+}
+
+m1 (10) ;  // valid
+
+m1 ("hi") ; // in-valid
+
+
+-> The above method is taking Integer as a parameter (It is tightly coupled). If we want to pass String as a parameter for m1 ( ) method it is not possible. Compiler will not accept it.
+
+-> To overcome above problem we can use Generics in Java.
+
+package in.ashokit;
+
+public class Demo<T> {
+
+	public void m1(T arg) {
+		System.out.println("Param Recieved : " + arg);
+	}
+
+	public static void main(String[] args) throws Exception {
+		Demo d = new Demo();
+
+		d.m1(10); // passing int value
+		d.m1("hi"); // passing String value
+		d.m1(100.51); // passing double value
+		d.m1(true); // passing boolean value
+	}
+}
+
+######################################################################################
+// Java program with Generic Type to achieve Type Safety
+######################################################################################
+
+package in.ashokit;
+
+public class Demo<T> {
+
+	T obj;
+
+	void add(T obj) {
+		this.obj = obj;
+	}
+
+	T get() {
+		return obj;
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		Demo<Integer> d1  = new Demo<>();
+		d1.add(10);
+		System.out.println(d1.get());
+		
+		Demo<String> d2 = new Demo<>();
+		d2.add("Hi");
+		System.out.println(d2.get());
+	}
+}
+
+######################################################################################
+// Java Program with Generic Parameters for Constructor
+######################################################################################
+
+package in.ashokit;
+
+public class Demo<T1, T2> {
+
+	T1 obj1;
+	T2 obj2;
+
+	Demo(T1 obj1, T2 obj2) {
+		this.obj1 = obj1;
+		this.obj2 = obj2;
+	}
+
+	void print() {
+		System.out.println(obj1 + ", " + obj2);
+	}
+
+	public static void main(String[] args) throws Exception {
+		Demo<Integer, String> d1 = new Demo<>(101, "Ram");
+		d1.print();
+
+		Demo<String, Long> d2 = new Demo<>("Ashok", 798686868l);
+		d2.print();
+
+		Demo<String, Boolean> d3 = new Demo<>("Raju", true);
+		d3.print();
+	}
+}
+
+######################################################################################
+Generics with wild Cards
+######################################################################################
+
+Demo< ? extends Number > 
+
+=> The above wild card represents Demo class should take any class obj which is extending from Number class.
+
+
+
+
+######################################################################################
+Auto Boxing	[primitive datatype to Correspinding Obj wrapper classes]
+######################################################################################
+Autoboxing is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes.
+
+
+
+######################################################################################
+Auto Unboxing	 [REVERSE AUTO BOXING]
+######################################################################################
+[primitive datatype to Correspinding Obj wrapper classes]
+
+
+Var Args
+Callable
+ExecutorService
+Generics
+Enums
+
+
+=============
+Enums in Java
+=============
+
+-> Enum introduced in java 1.5v
+
+-> Enum is a special data type in java
+
+-> Enum data type is used to create pre-defined Constants
+
+-> To declare constants using Enum we will use 'enum" keyword
+
+-> Enum stands for Enumeration
+
+	enum WEEKDAYS {
+		MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY;
+	}
+
+	enum WEEKENDDAYS {
+		SATURDAY, SUNDAY;
+	}
+
+
+-> When we want to declare pre-defined constants then we will use Enums concept.
+
+
+======================================
+Few Points To Remember Related To Enums
+======================================
+
+1) Enum constants we can't override
+2) Enum doesn't support object creation
+3) Enum can't extend classes
+4) Enum can be created in seperate file or we can create in existing class also
+
+
+package in.ashokit;
+
+public enum Course {
+
+	JAVA, PYTHON, DEVOPS, AWS, DOCKER, KUBERNETES;
+
+}
+
+package in.ashokit;
+
+public class Demo {
+
+	enum WEEKDAYS {
+		MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY;
+	}
+
+	enum WEEKENDDAYS {
+		SATURDAY, SUNDAY;
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		Course[] values = Course.values();
+		
+		for (Course c : values) {
+			System.out.println(c);
+		}
+	}
+}
+
+
+
+
+=============
+Inner Classes
+==============
+
+-> Creating one class inside another class is called as Inner class.
+
+-> Inner classes are also called as Nested Classes.
+
+-> The class which contains "other class" is called as Outer class
+
+-> The Class which is  declared inside "outer class" is called as Inner class.
+
+
+class  A {
+
+	class B {		helper class and hidden from other classes
+
+	}
+
+}
+
+class A - is called as outer class
+
+class B - is called as inner class
+
+-> Inner classes are called as Helper classes
+
+-> Inner classes are hidden from other classes ( only outer class can access inner class functionality )
+
+====================
+Types of Inner classes
+=====================
+
+1) Non static inner classes RAM
+
+			1.1  Regular Inner classes
+			1.2  Method local inner class
+			1.3  Anonymous inner class
+
+2) Static inner classes
+
+
+
+
+
+package in.ashokit;
+
+public class Outer {
+
+	void outerMethod() {
+		Inner i = new Inner();
+		i.innerMethod();
+	}
+
+	public static void main(String[] args) {
+		Outer o = new Outer();
+		o.outerMethod();
+	}
+
+	private class Inner {
+		void innerMethod() {
+			System.out.println("inner method called...");
+		}
+	}
+}
+
+
+=> We can't use private / protected modifier for outer classes
+
+-> We can use private modifier for inner classes
+
+
+
+Non-Static Inner Classes (Nested Classes):
+
+1.1 Regular Inner Classes: Regular inner classes are inner classes that are associated with an instance of the outer class. They have access to the outer class's instance variables and methods.
+
+1.2 Method Local Inner Class: Method local inner classes are defined within a method, and their scope is limited to that method. They can access final or effectively final local variables of the enclosing method.
+
+1.3 Anonymous Inner Class: Anonymous inner classes are defined without a name, often used for short-term implementations of interfaces or extending classes. They are created on the fly and are often used in event handling.
+
+Static Inner Classes:
+
+Static inner classes are inner classes that are associated with the outer class itself rather than an instance. They can be instantiated without creating an instance of the outer class and are often used for grouping related functionality.
+
+
+
+
+
+############################################################################################################################################################################
+====================
+Types of Inner classes
+=====================
+
+1) Non static inner classes RAM
+
+			1.1  Regular Inner classes
+			1.2  Method local inner class
+			1.3  Anonymous inner class
+
+2) Static inner classes
+
+############################################################################################################################################################################
+Regular Inner Classes: Regular inner classes are inner classes associated with an instance of the outer class, providing a way to logically group classes that are only used in one place.
+
+Method Local Inner Class: Method local inner classes are inner classes defined within a method, allowing the encapsulation of functionality to a specific method scope.
+
+Anonymous Inner Class: Anonymous inner classes are unnamed classes defined on the fly, often used for short-term implementations of interfaces or extending classes.
+
+Static Inner Classes: Static inner classes are inner classes associated with the outer class itself, providing a way to logically group classes without requiring an instance of the outer class.
+############################################################################################################################################################################
+1) Non static inner classes
+###########################
+1.1  Regular Inner classes
+###########################
+// Outer class
+class Outer {
+    private int outerVar = 10;
+
+    // Regular inner class
+    class Inner {
+        void display() {
+            System.out.println("Value of outerVar: " + outerVar);
+        }
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of the outer class
+        Outer outerObj = new Outer();
+        
+        // Creating an instance of the inner class
+        Outer.Inner innerObj = outerObj.new Inner();
+        
+        // Calling the method of the inner class
+        innerObj.display();
+    }
+}
+
+
+
+###########################
+1.2 Method Local Inner Class:
+###########################
+
+// Outer class
+class Outer {
+    void outerMethod() {
+        // Method local inner class
+        class Inner {
+            void display() {
+                System.out.println("Inside method local inner class");
+            }
+        }
+        
+        // Creating an instance of the inner class
+        Inner innerObj = new Inner();
+        
+        // Calling the method of the inner class
+        innerObj.display();
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of the outer class
+        Outer outerObj = new Outer();
+        
+        // Calling the method of the outer class
+        outerObj.outerMethod();
+    }
+}
+
+###########################
+1.3 Anonymous Inner Class:
+###########################
+// Interface
+interface Greeting {
+    void greet();
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Anonymous inner class implementing the Greeting interface
+        Greeting anonymousGreeting = new Greeting() {
+            @Override
+            public void greet() {
+                System.out.println("Hello from anonymous class!");
+            }
+        };
+        
+        // Calling the greet method of the anonymous class
+        anonymousGreeting.greet();
+    }
+}
+
+###########################
+2. Static Inner Class:
+###########################
+// Outer class
+class Outer {
+    private static int outerVar = 10;
+
+    // Static inner class
+    static class Inner {
+        void display() {
+            System.out.println("Value of outerVar: " + outerVar);
+        }
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of the static inner class
+        Outer.Inner innerObj = new Outer.Inner();
+        
+        // Calling the method of the inner class
+        innerObj.display();
+    }
+}
+
+
+##################################################################################################################################################################
